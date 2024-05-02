@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, Image, StyleSheet, Text, TextInput, View, Pressable } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import Titulo from '../components/Titulo';
+import Botao from '../components/Botao';
 
 export default function GeradorSenha(){
     const [senha, setSenha] = useState("");
@@ -27,20 +29,14 @@ export default function GeradorSenha(){
     return (
         <View style={styles.container}>
         <View style={styles.conteudo}>
-          <Text style={styles.titulo}>Gerador de senha</Text>
+          <Titulo titulo="Gerador de senha"/>
           <View style={styles.containerImagem}>
             <Image source={require("./assets/icone-senha2.png")}
             style={styles.imagem}/>
           </View>
           <Text style={styles.senha}>{senha}</Text>
-          <View style={styles.botoes}>
-          <Pressable onPress={gerarSenha}>
-            <Text style={styles.botao}>Gerar</Text>
-          </Pressable>
-          <Pressable onPress={copiarSenha}>
-            <Text style={styles.botao}>Copiar</Text>
-          </Pressable>
-          </View>
+            <Botao texto="Gerar" funcao={gerarSenha}/>
+            <Botao texto="Copiar" funcao={copiarSenha}/>
         </View>
       <StatusBar style="auto"/>
     </View>
@@ -57,13 +53,6 @@ const styles = StyleSheet.create({
       borderColor: "rgba(100, 208, 232, 0.8)",
       backgroundColor: "rgba(255,255,255,0.2)",
       width: "80%"
-    },
-    titulo: {
-      color: "cornflowerblue",
-      fontSize: 33,
-      fontWeight: "bold",
-      marginBottom: 10,
-      textAlign: "center"
     },
     containerImagem: {
       alignItems: "center",
@@ -82,14 +71,5 @@ const styles = StyleSheet.create({
       width: "100%",
       paddingVertical: 5,
       borderRadius: 5
-    },
-    botao: {
-      textAlign: "center",
-      marginBottom: 5,
-      color: "white",
-      backgroundColor: "midnightblue",
-      fontSize: 20,
-      paddingVertical: 4,
-      borderRadius: 5,
     }
   });
